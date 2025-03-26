@@ -1,4 +1,4 @@
-Jupyter.notebook.set_autosave_interval(1000); 
+this.notebook.set_autosave_interval(1000); 
 
 // Full Screen Mode
 function go_fullscreen() {
