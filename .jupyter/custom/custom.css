@@ -1,0 +1,8 @@
+/* Hide Binder and GitHub icons from the top toolbar */
+.jp-NotebookPanel-toolbar .jp-ToolbarButtonComponent[title*="GitHub"] {
+    display: none !important;
+}
+
+.jp-NotebookPanel-toolbar .jp-ToolbarButtonComponent[title*="Binder"] {
+    display: none !important;
+}
