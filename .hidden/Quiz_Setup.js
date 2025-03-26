@@ -28,6 +28,16 @@ document.addEventListener("contextmenu", function (event) {
 });
 
 
+// Wait until Jupyter Notebook is fully loaded
+setTimeout(function () {
+    document.querySelectorAll('.jp-ToolbarButtonComponent').forEach(el => {
+        if (el.title === "Visit Binder repository" || el.title === "Link to this Binder") {
+            el.style.display = 'none';
+        }
+    });
+}, 1000);
+
+
 
 
 
