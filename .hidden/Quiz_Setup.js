@@ -31,7 +31,9 @@ document.addEventListener("contextmenu", function (event) {
 // Wait until Jupyter Notebook is fully loaded
 setTimeout(function () {
     document.querySelectorAll('.jp-ToolbarButtonComponent').forEach(el => {
-        if (el.title === "Visit Binder repository" || el.title === "Link to this Binder") {
+        if (el.title === "Visit Binder repository" || el.title === "Link to this Binder" || 
+            el.title === "Download visible" || el.title === "Save to browser storage" ||
+            el.title === "Restore from browser storage" || el.title === "Notebook") {
             el.style.display = 'none';
         }
     });
