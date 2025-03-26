@@ -1,5 +1,5 @@
 /* Hide "Visit Binder Repository" and "Link to this Binder" icons */
-.jp-NotebookPanel-toolbar .jp-ToolbarButtonComponent[title="Visit Binder Repository"],
+.jp-NotebookPanel-toolbar .jp-ToolbarButtonComponent[title="Visit Binder repository"],
 .jp-NotebookPanel-toolbar .jp-ToolbarButtonComponent[title="Link to this Binder"] {
     display: none !important;
 }
