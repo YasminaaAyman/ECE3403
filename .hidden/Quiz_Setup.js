@@ -20,6 +20,12 @@ document.addEventListener("contextmenu", function (event) {
 });
 
 
+document.addEventListener("copy", function (event) {
+    event.preventDefault();
+    alert("Copying is disabled in this notebook.");
+});
+
+
 // Wait until Jupyter Notebook is fully loaded and delete some buttons in toolbar
 setTimeout(function () {
     document.querySelectorAll('.jp-ToolbarButtonComponent').forEach(el => {
