@@ -14,25 +14,6 @@ function go_fullscreen() {
 go_fullscreen()
 
 
-function disableCopyPaste() {
-    // Prevent right-click context menu
-    document.addEventListener("contextmenu", function(event) {
-        event.preventDefault();
-    });
-
-    // Prevent copy event
-    document.addEventListener("copy", function(e) {
-        e.clipboardData.setData("text/plain", "Copy and Paste are disabled!");
-        e.preventDefault();
-    });
-
-    // Prevent paste event
-    document.addEventListener("paste", function(e) {
-        e.preventDefault();
-    });
-
-disableCopyPaste()
-
 
 // Wait until Jupyter Notebook is fully loaded and delete some buttons in toolbar
 setTimeout(function () {
