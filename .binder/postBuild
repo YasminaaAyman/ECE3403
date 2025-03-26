@@ -1,2 +1,2 @@
 #!/bin/bash
-rm -f Quiz_Setup.js
+chmod 400 .hidden/Quiz_Setup.js
