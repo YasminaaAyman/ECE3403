@@ -14,15 +14,15 @@ function go_fullscreen() {
 go_fullscreen()
 
 
-// Disable Copy/paste (Right-Click Menu)
-document.addEventListener("contextmenu", function (event) {
-    event.preventDefault();
-});
-
-
 document.addEventListener("copy", function (event) {
     event.preventDefault();
     alert("Copying is disabled in this notebook.");
+});
+
+
+// Disable Copy/paste (Right-Click Menu)
+document.addEventListener("contextmenu", function (event) {
+    event.preventDefault();
 });
 
 
