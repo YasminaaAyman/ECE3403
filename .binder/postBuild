@@ -1,5 +1,2 @@
 #!/bin/bash
 chmod 400 .hidden/Quiz_Setup.js
-
-mkdir -p ~/.jupyter/custom/
-cp .jupyter/custom/custom.css ~/.jupyter/custom/custom.css
