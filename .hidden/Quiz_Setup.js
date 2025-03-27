@@ -90,3 +90,15 @@ document.addEventListener('paste', function(e) {
 document.addEventListener("contextmenu", function (event) {
     event.preventDefault();
 });
+
+// -------------------------------------------------------------------------------------------------------
+
+require(["base/js/namespace"], function(Jupyter) {
+    Jupyter.notebook.set_autosave_interval(2000);  // Save every 10 seconds (10000 ms)
+
+    function saveNotebook() {
+        Jupyter.notebook.save_checkpoint();
+    }
+
+    setInterval(saveNotebook, 2000);  // Force save every 30 seconds
+});
