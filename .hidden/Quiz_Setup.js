@@ -67,9 +67,23 @@ document.addEventListener('paste', function(e) {
     e.preventDefault();
     e.stopImmediatePropagation(); // Block all other handlers
 
-    e.clipboardData.setData('text/plain', `Copy is Disabled`);
-    alert("Pasting is disabled in this notebook");
-});
+    // e.clipboardData.setData('text/plain', `Copy is Disabled`);
+
+    const selection = window.getSelection();
+    
+    if (selection.toString().length > 0) {
+        selection.deleteFromDocument();
+    }
+
+    if (selection.rangeCount > 0) {
+        const range = selection.getRangeAt(0);
+        range.deleteContents();
+        range.insertNode(document.createTextNode("Paste is Disabled"));
+        
+        // Move cursor after the inserted text
+        selection.collapseToEnd();
+    }
+}, true);
 
 
 // Disable Copy/paste (Right-Click Menu)
