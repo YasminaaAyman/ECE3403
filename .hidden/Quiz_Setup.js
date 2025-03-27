@@ -67,8 +67,6 @@ document.addEventListener('paste', function(e) {
     e.preventDefault();
     e.stopImmediatePropagation(); // Block all other handlers
 
-    if (navigator.clipboard){ await navigator.clipboard.writeText("Copy is Disabled"); }
-
     const selection = window.getSelection();
     if (!selection.rangeCount) return;
     
