@@ -64,16 +64,9 @@ document.addEventListener('cut', function(e) {
 });
 
 document.addEventListener('paste', function(e) {
-    // Get selected text
-    const selection = window.getSelection().toString();
-    
-    if (selection.length > 0) {
-        // Modify the clipboard content
-        e.preventDefault();
-        
-        // Write to clipboard
-        e.clipboardData.setData('text/plain', `Paste is Disabled`);
-    }
+    e.preventDefault();
+    const originalText = e.clipboardData.getData('text/plain');
+    document.execCommand('insertText', false, `Paste is Disabled`);
 });
 
 
