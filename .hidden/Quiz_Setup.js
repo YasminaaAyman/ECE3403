@@ -65,8 +65,16 @@ document.addEventListener('cut', function(e) {
 
 document.addEventListener('paste', function(e) {
     e.preventDefault();
-    const originalText = e.clipboardData.getData('text/plain');
-    document.execCommand('insertText', false, `Paste is Disabled`);
+    // Method 1: Modern way (works in most browsers)
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText("Paste is Disabled").then(() => {
+            document.execCommand('insertText', false, "Paste is Disabled");
+        });
+    } 
+    // Method 2: Fallback for older browsers
+    else {
+        document.execCommand('insertText', false, "Paste is Disabled");
+    }
 });
 
 
