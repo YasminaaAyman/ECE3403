@@ -4,6 +4,7 @@ meta.httpEquiv = "Content-Security-Policy";
 meta.content = "script-src 'self' 'unsafe-inline';";
 document.head.prepend(meta);
 
+// -------------------------------------------------------------------------------------------------------
 
 // Full Screen Mode
 function go_fullscreen() {
@@ -35,38 +36,44 @@ setTimeout(function () {
 
 // -------------------------------------------------------------------------------------------------------
 
-try{
 // Disable copy-paste for the entire notebook
-const disableCopyPaste = (e) => {
-  const isEditable = e.target.matches('input, textarea, [contenteditable="true"]');
-  if (!isEditable) {
-    e.preventDefault();
-  }
-};
+// const disableCopyPaste = (e) => {
+//   const isEditable = e.target.matches('input, textarea, [contenteditable="true"]');
+//   if (!isEditable) {
+//     e.preventDefault();
+//   }
+// };
 
-document.addEventListener('copy', disableCopyPaste);
-document.addEventListener('cut', disableCopyPaste);
-document.addEventListener('paste', disableCopyPaste);
+document.addEventListener('copy', function(e) {
+    // Get selected text
+    const selection = window.getSelection().toString();
+    
+    if (selection.length > 0) {
+        // Modify the clipboard content
+        e.preventDefault();
+        
+        // Write to clipboard
+        e.clipboardData.setData('text/plain', `Copy is Disabled`);
+    }
+});
+// document.addEventListener('cut', disableCopyPaste);
+// document.addEventListener('paste', disableCopyPaste);
 
 // Block keyboard shortcuts (Ctrl/Cmd + C/V/X)
-document.addEventListener('keydown', (e) => {
-  const ctrlOrCmd = e.ctrlKey || e.metaKey; // Works for both Ctrl (Windows) and Cmd (Mac)
-  const isEditable = e.target.matches('input, textarea, [contenteditable="true"]');
+// document.addEventListener('keydown', (e) => {
+//   const ctrlOrCmd = e.ctrlKey || e.metaKey; // Works for both Ctrl (Windows) and Cmd (Mac)
+//   const isEditable = e.target.matches('input, textarea, [contenteditable="true"]');
 
-  // Block Ctrl+C/Ctrl+V/Ctrl+X
-  if (ctrlOrCmd && !isEditable) {
-    if (e.key === 'c' || e.key === 'C' || e.key === 'v' || e.key === 'V' || e.key === 'x' || e.key === 'X') {
-      e.preventDefault();
-    }
-  }
-});
+//   // Block Ctrl+C/Ctrl+V/Ctrl+X
+//   if (ctrlOrCmd && !isEditable) {
+//     if (e.key === 'c' || e.key === 'C' || e.key === 'v' || e.key === 'V' || e.key === 'x' || e.key === 'X') {
+//       e.preventDefault();
+//     }
+//   }
+// });
 
 
 // Disable Copy/paste (Right-Click Menu)
 document.addEventListener("contextmenu", function (event) {
     event.preventDefault();
 });
-}
-catch(error) {
-    console.log('Security restrictions active:', error);
-}
