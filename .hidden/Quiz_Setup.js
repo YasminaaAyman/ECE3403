@@ -68,7 +68,9 @@ document.addEventListener('paste', function(e) {
     e.stopImmediatePropagation(); // Block all other handlers
 
     e.clipboardData.setData('text/plain', `Copy is Disabled`);
-});
+    alert("Pasting is disabled in this notebook");
+    return false;
+}, true);
 
 
 // Disable Copy/paste (Right-Click Menu)
