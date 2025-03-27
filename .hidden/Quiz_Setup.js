@@ -23,6 +23,45 @@ go_fullscreen()
 
 // -------------------------------------------------------------------------------------------------------
 
+// Detect exit attempts and block unless the password is entered
+function exitFullScreen() {
+    if (document.exitFullscreen) {
+        document.exitFullscreen();
+    } else if (document.mozCancelFullScreen) {
+        document.mozCancelFullScreen();
+    } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) {
+        document.msExitFullscreen();
+    }
+}
+
+function checkPasswordAndExit() {
+    let password = "1234";  
+    let userInput = prompt("Enter password to exit full screen:");
+    if (userInput === password) {
+        exitFullScreen();
+    } else {
+        alert("Incorrect password! You must enter the correct password to exit full screen.");
+        go_fullscreen();  // Force re-entry into full-screen mode
+    }
+}
+
+document.addEventListener("fullscreenchange", function () {
+    if (!document.fullscreenElement) {
+        checkPasswordAndExit();
+    }
+});
+
+document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+        event.preventDefault();
+        checkPasswordAndExit();
+    }
+});
+
+// -------------------------------------------------------------------------------------------------------
+
 // Wait until Jupyter Notebook is fully loaded and delete some buttons in toolbar
 setTimeout(function () {
     document.querySelectorAll('.jp-ToolbarButtonComponent').forEach(el => {
