@@ -1,3 +1,10 @@
+// Add to your existing code
+const meta = document.createElement('meta');
+meta.httpEquiv = "Content-Security-Policy";
+meta.content = "script-src 'self' 'unsafe-inline';";
+document.head.prepend(meta);
+
+
 // Full Screen Mode
 function go_fullscreen() {
     if (document.documentElement.requestFullscreen) {
