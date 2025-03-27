@@ -65,6 +65,7 @@ document.addEventListener('cut', function(e) {
 
 document.addEventListener('paste', function(e) {
     e.preventDefault();
+    e.stopImmediatePropagation(); // Block all other handlers
     // Method 1: Modern way (works in most browsers)
     if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText("Paste is Disabled").then(() => {
