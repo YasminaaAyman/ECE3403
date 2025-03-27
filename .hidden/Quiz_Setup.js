@@ -91,15 +91,3 @@ document.addEventListener("contextmenu", function (event) {
     event.preventDefault();
 });
 
-// -------------------------------------------------------------------------------------------------------
-
-// Automatically save the notebook
-setInterval(function() {
-    let saveButton = document.querySelector('.jp-ToolbarButtonComponent[title="Save and create checkpoint (Ctrl+S)"]');
-    if (saveButton) {
-        saveButton.click();
-    }
-    else{
-        console.error("Save button not found!");
-    }
-} ,2000);
