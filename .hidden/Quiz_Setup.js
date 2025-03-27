@@ -28,6 +28,7 @@ setTimeout(function () {
 
 // -------------------------------------------------------------------------------------------------------
 
+try{
 // Disable copy-paste for the entire notebook
 const disableCopyPaste = (e) => {
   const isEditable = e.target.matches('input, textarea, [contenteditable="true"]');
@@ -58,3 +59,7 @@ document.addEventListener('keydown', (e) => {
 document.addEventListener("contextmenu", function (event) {
     event.preventDefault();
 });
+}
+catch(error) {
+    console.log('Security restrictions active:', error);
+}
