@@ -15,28 +15,28 @@ go_fullscreen()
 
 
 // Disable copy-paste for the entire notebook
-document.addEventListener('DOMContentLoaded', function() {
-    // Disable right-click context menu
-    document.addEventListener('contextmenu', function(e) {
-        e.preventDefault();
-    });
-    
-    // Disable copy/cut/paste keyboard shortcuts
-    document.addEventListener('keydown', function(e) {
-        // Ctrl+C, Ctrl+X, Ctrl+V
-        if (e.ctrlKey && (e.keyCode === 67 || e.keyCode === 86 || e.keyCode === 88)) {
-            e.preventDefault();
-        }
-        // Also disable right-click paste
-        if (e.keyCode === 86 && e.shiftKey && e.ctrlKey) {
-            e.preventDefault();
-        }
-    });
-    
-    // Disable text selection (optional)
-    document.addEventListener('selectstart', function(e) {
-        e.preventDefault();
-    });
+const disableCopyPaste = (e) => {
+  const isEditable = e.target.matches('input, textarea, [contenteditable="true"]');
+  if (!isEditable) {
+    e.preventDefault();
+  }
+};
+
+document.addEventListener('copy', disableCopyPaste);
+document.addEventListener('cut', disableCopyPaste);
+document.addEventListener('paste', disableCopyPaste);
+
+// Block keyboard shortcuts (Ctrl/Cmd + C/V/X)
+document.addEventListener('keydown', (e) => {
+  const ctrlOrCmd = e.ctrlKey || e.metaKey; // Works for both Ctrl (Windows) and Cmd (Mac)
+  const isEditable = e.target.matches('input, textarea, [contenteditable="true"]');
+
+  // Block Ctrl+C/Ctrl+V/Ctrl+X
+  if (ctrlOrCmd && !isEditable) {
+    if (e.key === 'c' || e.key === 'C' || e.key === 'v' || e.key === 'V' || e.key === 'x' || e.key === 'X') {
+      e.preventDefault();
+    }
+  }
 });
 
 
