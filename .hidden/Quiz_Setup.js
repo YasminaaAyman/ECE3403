@@ -66,16 +66,14 @@ document.addEventListener('cut', function(e) {
 document.addEventListener('paste', function(e) {
     e.preventDefault();
     e.stopImmediatePropagation(); // Block all other handlers
-    // Method 1: Modern way (works in most browsers)
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText("Paste is Disabled").then(() => {
-            document.execCommand('insertText', false, "Paste is Disabled");
-        });
-    } 
-    // Method 2: Fallback for older browsers
-    else {
-        document.execCommand('insertText', false, "Paste is Disabled");
-    }
+
+    if (navigator.clipboard){ await navigator.clipboard.writeText("Copy is Disabled"); }
+
+    const selection = window.getSelection();
+    if (!selection.rangeCount) return;
+    
+    selection.deleteFromDocument();
+    selection.getRangeAt(0).insertNode(document.createTextNode("Copy is Disabled"));
 });
 
 
