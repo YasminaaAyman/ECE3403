@@ -93,12 +93,13 @@ document.addEventListener("contextmenu", function (event) {
 
 // -------------------------------------------------------------------------------------------------------
 
-require(["base/js/namespace"], function(Jupyter) {
-    Jupyter.notebook.set_autosave_interval(2000);  // Save every 10 seconds (10000 ms)
-
-    function saveNotebook() {
-        Jupyter.notebook.save_checkpoint();
+// Automatically save the notebook
+setInterval(function() {
+    let saveButton = document.querySelector('.jp-ToolbarButtonComponent[title="Save and create checkpoint (Ctrl+S)"]');
+    if (saveButton) {
+        saveButton.click();
     }
-
-    setInterval(saveNotebook, 2000);  // Force save every 30 seconds
-});
+    else{
+        console.error("Save button not found!");
+    }
+} ,2000);
